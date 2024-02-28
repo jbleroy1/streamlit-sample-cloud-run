@@ -1,0 +1,43 @@
+apiVersion: skaffold/v4beta7
+kind: Config
+metadata: 
+  name: deploy-streamlit
+profiles:
+- name: dev
+  manifests:
+    kustomize:
+      paths: ["manifests/overlays/dev"]
+- name: pre-prod
+  manifests:
+    kustomize:
+      paths: ["manifests/overlays/pre-prod"]
+- name: prod
+  manifests:
+    kustomize:
+      paths: ["manifests/overlays/prod"]
+      
+build:
+  artifacts:
+  - image: <you docker image name>
+    buildpacks:
+      builder: "gcr.io/buildpacks/builder:v1"
+      dependencies:
+        paths:
+        - "Procfile"
+        - "requirements.txt"
+        - "app-jwt.py"
+  googleCloudBuild:
+      projectId: <your cloud build project>
+
+
+deploy:
+  cloudrun: {
+    region: <cloud run region>,
+    projectid: <Cloud run project>
+    
+  }
+
+
+  
+      
+ 

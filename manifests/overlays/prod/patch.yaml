@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: streamlit-cr-demo
+  annotations:
+    run.googleapis.com/ingress: internal-and-cloud-load-balancing
+
+        
+        

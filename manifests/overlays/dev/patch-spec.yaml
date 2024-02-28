@@ -1,0 +1,4 @@
+- op: replace
+  path: /spec/template/spec/containers/0/image
+  value: europe-west2-docker.pkg.dev/ts24-iac-cicd/docker-server/streamlit-app
+  
